@@ -54,8 +54,7 @@ jobs:
         docker build -t ${{ secrets.DOCKER_REPO }} .
         docker push ${{ secrets.DOCKER_REPO }}
          
-    ```yaml
-## 서버에 접속하여 도커 이미지를 pull 받고 실행하기
+    ## 서버에 접속하여 도커 이미지를 pull 받고 실행하기
     - name: Deploy to server
       uses: appleboy/ssh-action@master
       with:
@@ -68,4 +67,3 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_REPO }}
           docker-compose up -d
           docker image prune -f
-```
