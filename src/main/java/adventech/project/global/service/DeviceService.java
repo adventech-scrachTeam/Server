@@ -5,10 +5,12 @@ import adventech.project.global.dto.request.DeviceRequest;
 import adventech.project.global.dto.response.DeviceResponse;
 import adventech.project.global.entity.ArduinoData;
 import adventech.project.global.entity.DeviceData;
+import adventech.project.global.entity.TempData;
 import adventech.project.global.mapper.ArduinoDataMapper;
 import adventech.project.global.mapper.DeviceMapper;
 import adventech.project.global.repository.ArduinoDataRepository;
 import adventech.project.global.repository.DeviceDataRepository;
+import adventech.project.global.repository.TempDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +22,17 @@ public class DeviceService {
     private final DeviceMapper deviceMapper;
     private  final ArduinoDataMapper arduinoDataMapper;
     private final ArduinoDataRepository arduinoDataRepository;
+    private final TempDataRepository tempDataRepository;
     @Transactional
     public DeviceResponse getLatestDeviceData() {
         DeviceData deviceData = deviceDataRepository.findTopByOrderByIdDesc();
         return deviceMapper.toDeviceResponse(deviceData);
+    }
+
+    @Transactional
+    public DeviceResponse getLatestTempData() {
+        TempData tempData = tempDataRepository.findTopByOrderByIdDesc();
+        return deviceMapper.toDeviceResponse(tempData);
     }
 
     @Transactional

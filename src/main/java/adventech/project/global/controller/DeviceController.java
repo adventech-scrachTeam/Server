@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.*;
 public class DeviceController {
     private final DeviceService deviceService;
 
-    @GetMapping("/device-data")
+    @GetMapping("/humi-data")
     public BaseResponse<DeviceResponse> getLatestDeviceData() {
         return BaseResponse.onSuccess(deviceService.getLatestDeviceData());  // 최신 데이터를 반환
+    }
+
+    @GetMapping("/temp-data")
+    public BaseResponse<DeviceResponse> getLatestTempData() {
+        return BaseResponse.onSuccess(deviceService.getLatestTempData());  // 최신 데이터를 반환
     }
 
     @PostMapping("/data")
