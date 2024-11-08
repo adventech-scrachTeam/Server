@@ -2,9 +2,11 @@ package adventech.project.global.controller;
 
 
 import adventech.project.global.common.BaseResponse;
+import adventech.project.global.dto.request.CurrentRequest;
 import adventech.project.global.dto.request.DeviceRequest;
 import adventech.project.global.dto.response.DeviceResponse;
 import adventech.project.global.entity.ArduinoData;
+import adventech.project.global.entity.CurrentData;
 import adventech.project.global.entity.DeviceData;
 import adventech.project.global.service.DeviceService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,11 @@ public class DeviceController {
     @PostMapping("/data")
     public  BaseResponse<ArduinoData> createArduinoData(@RequestBody DeviceRequest request){
         return BaseResponse.onSuccess(deviceService.createArduinoData(request));
+    }
+
+    @PostMapping("/current-data")
+    public BaseResponse<CurrentData> createCurrentData(@RequestBody CurrentRequest request){
+        return BaseResponse.onSuccess(deviceService.createCurrentData(request));
     }
 
 }
